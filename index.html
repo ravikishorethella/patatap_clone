@@ -6,6 +6,11 @@
     <script type="text/javascript" src="paper-full.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script type="text/paperscript" canvas="myCanvas">
+    
+    // create a new array of circles
+    
+    var circles = [];
+    
 	function onKeyDown(event) {
 	var maxPoint = new Point(view.size.width, view.size.height);
     // now to display the random point
@@ -13,9 +18,21 @@
     // select the point
     var point = maxPoint * randomPoint;
     // now the circle we can pass this point 
-    new Path.Circle(point, 10).fillColor = "blue";
-	
+    var newCircle = new Path.Circle(point,500);
+    newCircle.fillColor = "blue";
+    circles.push(newCircle);	
 }     
+
+    
+    function onFrame(event) {
+	// Each frame, change the fill color of the path slightly by
+	// adding 1 to its hue:
+    for(var i=0; i<circles.length; i++){
+       circles[i].fillColor.hue += 1;
+       circles[i].scale(0.9123);
+    }
+}
+
 </script>
 </head>
 <body>
